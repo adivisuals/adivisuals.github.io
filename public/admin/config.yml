@@ -1,0 +1,81 @@
+# ─────────────────────────────────────────────────────────────
+# Decap CMS configuration
+# Docs: https://decapcms.org/docs/configuration-options/
+# ─────────────────────────────────────────────────────────────
+
+backend:
+  name: github
+  repo: adivisuals/adivisuals.github.io
+  branch: main
+  base_url: https://decap-proxy.adivisuals-cms.workers.dev
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  # ─────────────────── Work Videos ───────────────────────
+  - name: "work"
+    label: "Work Videos"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - file: "src/content/projects.json"
+        name: "projects"
+        label: "Work Videos List"
+        fields:
+          - label: "Videos"
+            label_singular: "Video"
+            name: "projects"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.category}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Category", name: "category", widget: "string", hint: "e.g. Science & Technology" }
+              - { label: "Style", name: "style", widget: "string", hint: "e.g. Commentary, Documentary, Gameplay — also becomes a filter chip" }
+              - { label: "Duration", name: "duration", widget: "string", hint: "e.g. 12:34" }
+              - { label: "Views", name: "views", widget: "string", hint: "e.g. 27.22K" }
+              - { label: "Likes", name: "likes", widget: "string", hint: "e.g. 759" }
+              - { label: "Year", name: "year", widget: "string", hint: "e.g. 2025" }
+              - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false, hint: "Upload a thumbnail image for the video card" }
+              - { label: "Thumbnail color", name: "color", widget: "string", required: false, hint: "Fallback hex color for the card gradient if no thumbnail is set, e.g. #1a1206" }
+              - { label: "Description", name: "description", widget: "text", required: false, hint: "Short description shown under the video card" }
+              - { label: "Video URL", name: "videoUrl", widget: "string", required: false, hint: "Link to the video (YouTube etc.). Leave blank for a non-clickable card." }
+
+  # ─────────────────── Site Settings ─────────────────────
+  - name: "settings"
+    label: "Site Settings"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - file: "src/content/site.json"
+        name: "site"
+        label: "Site Content"
+        fields:
+          - label: "Stats"
+            name: "stats"
+            widget: "object"
+            summary: "{{fields.videos}} videos · {{fields.views}} views · {{fields.likes}} likes"
+            hint: "Shown on the Home and About pages. The first two also drive the Work page stat line."
+            fields:
+              - { label: "Videos", name: "videos", widget: "string", hint: "e.g. 7" }
+              - { label: "Views", name: "views", widget: "string", hint: "e.g. 52K" }
+              - { label: "Likes", name: "likes", widget: "string", hint: "e.g. 1K" }
+          - { label: "Work page tagline", name: "workTagline", widget: "string", hint: "Ends the Work page line: «N videos · N views · <this>», e.g. Always giving 100%" }
+          - { label: "Hero tagline", name: "heroTagline", widget: "string", hint: "Shown under the name on the home page hero" }
+          - label: "Social links"
+            name: "social"
+            widget: "object"
+            summary: "YouTube · Instagram · X"
+            fields:
+              - { label: "YouTube", name: "youtube", widget: "string" }
+              - { label: "Instagram", name: "instagram", widget: "string" }
+              - { label: "X (Twitter)", name: "x", widget: "string" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            summary: "{{fields.email}}"
+            fields:
+              - { label: "Contact email", name: "email", widget: "string", hint: "Where EmailJS delivers messages / mailto fallback" }
+              - { label: "Available for new projects", name: "availability", widget: "boolean" }
