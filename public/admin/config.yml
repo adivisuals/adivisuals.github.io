@@ -7,7 +7,15 @@ backend:
   name: github
   repo: adivisuals/adivisuals.github.io
   branch: main
+<<<<<<< HEAD
   base_url: https://decap-proxy.adivisuals-cms.workers.dev
+=======
+  # GitHub requires an OAuth gateway (GitHub Pages has no auth server).
+  # Deploy the free proxy https://github.com/sterlingwes/decap-proxy on
+  # Cloudflare Workers, then put its URL here:
+  base_url: https://decap-proxy.adivisuals-cms.workers.dev   # CHANGE
+  # auth_endpoint defaults to "auth" — matches the proxy above.
+>>>>>>> e8ab52c501e4238b0b4375dac13967f6756709e6
 
 media_folder: "public/images"
 public_folder: "/images"

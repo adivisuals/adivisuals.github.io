@@ -3,6 +3,7 @@
     {
       "title": "Watch this before you buy PS5❗️",
       "duration": "0:33",
+<<<<<<< HEAD
       "views": "27.22K",
       "likes": "759",
       "year": "2025",
@@ -90,6 +91,14 @@
       "description": "Another sample for a finance creator this one is the showreel",
       "category": "Business & Finance",
       "style": "Showreel"
+=======
+      "views": "27.3",
+      "year": "2026",
+      "videoUrl": "https://www.youtube.com/watch?v=-u-OjSSMjHA",
+      "color": "#1a1206",
+      "category": "Science & Technology",
+      "style": "Documentary"
+>>>>>>> e8ab52c501e4238b0b4375dac13967f6756709e6
     }
   ]
 }
