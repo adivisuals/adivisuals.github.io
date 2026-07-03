@@ -1,64 +1,14 @@
 {
   "projects": [
     {
-      "title": "Tech Review Breakdown",
+      "title": "Watch this before you buy PS5❗️",
+      "duration": "0:33",
+      "views": "27.3",
+      "year": "2026",
+      "videoUrl": "https://www.youtube.com/watch?v=-u-OjSSMjHA",
+      "color": "#1a1206",
       "category": "Science & Technology",
-      "style": "Commentary",
-      "duration": "12:34",
-      "views": "18.2K",
-      "year": "2024",
-      "color": "#1a1206",
-      "videoUrl": ""
-    },
-    {
-      "title": "Market Insights Weekly",
-      "category": "Business & Finance",
-      "style": "Educational",
-      "duration": "08:15",
-      "views": "11.4K",
-      "year": "2024",
-      "color": "#0d1306",
-      "videoUrl": ""
-    },
-    {
-      "title": "Gaming Highlights Reel",
-      "category": "Gaming",
-      "style": "Gameplay",
-      "duration": "06:50",
-      "views": "9.8K",
-      "year": "2025",
-      "color": "#0d0d1a",
-      "videoUrl": ""
-    },
-    {
-      "title": "Street Stories Doc",
-      "category": "Documentary",
-      "style": "Documentary",
-      "duration": "22:10",
-      "views": "7.2K",
-      "year": "2025",
-      "color": "#1a0d0d",
-      "videoUrl": ""
-    },
-    {
-      "title": "Economy Explained",
-      "category": "Economy",
-      "style": "Faceless",
-      "duration": "14:05",
-      "views": "4.3K",
-      "year": "2025",
-      "color": "#0d1a16",
-      "videoUrl": ""
-    },
-    {
-      "title": "Creator Vlog Series",
-      "category": "People & Blogs",
-      "style": "Talking Head",
-      "duration": "09:30",
-      "views": "1.87K",
-      "year": "2025",
-      "color": "#1a1206",
-      "videoUrl": ""
+      "style": "Documentary"
     }
   ]
 }
