@@ -1,4 +1,3 @@
-// src/data/content.ts
 import siteData from "@/content/site.json";
 import projectsData from "@/content/projects.json";
 
@@ -24,7 +23,7 @@ export interface SiteContent {
   workTagline: string;
   heroTagline: string;
   logo: string;
-  logoSize: number;
+  logoSize: string;
   social: SocialLinks;
   contact: ContactInfo;
 }

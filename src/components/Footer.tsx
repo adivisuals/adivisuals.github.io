@@ -1,4 +1,3 @@
-// src/components/Footer.tsx
 import type { Page } from "@/App";
 import { site } from "@/data/content";
 import SocialIcons from "@/components/SocialIcons";

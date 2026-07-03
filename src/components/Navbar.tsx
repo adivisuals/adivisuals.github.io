@@ -1,4 +1,3 @@
-// src/components/Navbar.tsx
 import { useState, useEffect } from "react";
 import type { Page } from "@/App";
 import { site } from "@/data/content";
