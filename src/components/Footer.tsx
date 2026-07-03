@@ -20,7 +20,8 @@ export default function Footer({ navigate }: FooterProps) {
             <img
               src={site.logo}
               alt="Aditya Vishwakarma"
-              className="w-8 h-8 object-cover group-hover:opacity-90 transition-opacity duration-300"
+              style={{ width: `${site.logoSize}px`, height: `${site.logoSize}px` }}
+              className="object-cover group-hover:opacity-90 transition-opacity duration-300"
             />
             <span className="text-gray-500 text-xs tracking-[0.3em] uppercase group-hover:text-gray-300 transition-colors duration-300">
               ADITYA VISHWARKARMA

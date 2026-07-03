@@ -1,3 +1,4 @@
+# public/admin/config.yml
 backend:
   name: github
   repo: adivisuals/adivisuals.github.io
@@ -57,7 +58,8 @@ collections:
               - { label: "Likes", name: "likes", widget: "string", hint: "e.g. 1K" }
           - { label: "Work page tagline", name: "workTagline", widget: "string", hint: "Ends the Work page line: «N videos · N views · <this>», e.g. Always giving 100%" }
           - { label: "Hero tagline", name: "heroTagline", widget: "string", hint: "Shown under the name on the home page hero" }
-          - { label: "Logo", name: "logo", widget: "string", hint: "Image URL for the site logo shown in the navbar and footer" }
+          - { label: "Logo", name: "logo", widget: "image", hint: "Upload the site logo (shown in navbar and footer)" }
+          - { label: "Logo Size (px)", name: "logoSize", widget: "number", default: 32, hint: "Sets the width and height of the logo in pixels" }
           - label: "Social links"
             name: "social"
             widget: "object"

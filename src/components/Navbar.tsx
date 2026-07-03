@@ -48,7 +48,8 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
             <img
               src={site.logo}
               alt="Aditya Vishwakarma"
-              className="w-7 h-7 object-cover group-hover:opacity-90 transition-opacity duration-300"
+              style={{ width: `${site.logoSize}px`, height: `${site.logoSize}px` }}
+              className="object-cover group-hover:opacity-90 transition-opacity duration-300"
             />
             <span
               className="text-[#f5f0e8] text-sm tracking-[0.2em] uppercase font-light hidden sm:block group-hover:text-amber-400/80 transition-colors duration-300"
