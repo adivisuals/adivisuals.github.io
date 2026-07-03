@@ -57,6 +57,7 @@ collections:
               - { label: "Likes", name: "likes", widget: "string", hint: "e.g. 1K" }
           - { label: "Work page tagline", name: "workTagline", widget: "string", hint: "Ends the Work page line: «N videos · N views · <this>», e.g. Always giving 100%" }
           - { label: "Hero tagline", name: "heroTagline", widget: "string", hint: "Shown under the name on the home page hero" }
+          - { label: "Logo", name: "logo", widget: "string", hint: "Image URL for the site logo shown in the navbar and footer" }
           - label: "Social links"
             name: "social"
             widget: "object"

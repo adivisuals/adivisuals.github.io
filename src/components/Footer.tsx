@@ -1,4 +1,6 @@
+// src/components/Footer.tsx
 import type { Page } from "@/App";
+import { site } from "@/data/content";
 import SocialIcons from "@/components/SocialIcons";
 
 interface FooterProps {
@@ -15,16 +17,13 @@ export default function Footer({ navigate }: FooterProps) {
             onClick={() => navigate("home")}
             className="flex items-center gap-3 group"
           >
-            <div className="w-8 h-8 border border-amber-400/40 flex items-center justify-center group-hover:border-amber-400 transition-colors duration-300">
-              <span
-                className="text-amber-400 text-xs font-bold"
-                style={{ fontFamily: "'Bebas Neue', cursive" }}
-              >
-                VE
-              </span>
-            </div>
+            <img
+              src={site.logo}
+              alt="Aditya Vishwakarma"
+              className="w-8 h-8 object-cover group-hover:opacity-90 transition-opacity duration-300"
+            />
             <span className="text-gray-500 text-xs tracking-[0.3em] uppercase group-hover:text-gray-300 transition-colors duration-300">
-              Video Editor
+              ADITYA VISHWARKARMA
             </span>
           </button>
 

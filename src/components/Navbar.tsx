@@ -1,5 +1,7 @@
+// src/components/Navbar.tsx
 import { useState, useEffect } from "react";
 import type { Page } from "@/App";
+import { site } from "@/data/content";
 
 interface NavbarProps {
   currentPage: Page;
@@ -43,14 +45,11 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
             onClick={() => navigate("home")}
             className="flex items-center gap-2 group"
           >
-            <div className="w-7 h-7 border border-amber-400/60 flex items-center justify-center group-hover:border-amber-400 transition-colors duration-300">
-              <span
-                className="text-amber-400 text-xs font-bold"
-                style={{ fontFamily: "'Bebas Neue', cursive", letterSpacing: "0.05em" }}
-              >
-                ADI
-              </span>
-            </div>
+            <img
+              src={site.logo}
+              alt="Aditya Vishwakarma"
+              className="w-7 h-7 object-cover group-hover:opacity-90 transition-opacity duration-300"
+            />
             <span
               className="text-[#f5f0e8] text-sm tracking-[0.2em] uppercase font-light hidden sm:block group-hover:text-amber-400/80 transition-colors duration-300"
               style={{ fontFamily: "'Inter', sans-serif" }}

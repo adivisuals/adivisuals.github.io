@@ -1,3 +1,4 @@
+// src/pages/HomePage.tsx
 import { useEffect, useRef, useState } from "react";
 import type { Page } from "@/App";
 import { site } from "@/data/content";
@@ -52,6 +53,7 @@ export default function HomePage({ navigate }: HomePageProps) {
   const showreelSection = useInView<HTMLDivElement>(0.3);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     const v = videoRef.current;
@@ -59,6 +61,7 @@ export default function HomePage({ navigate }: HomePageProps) {
     
     if (showreelSection.inView) {
       v.play().catch((err) => console.warn("Autoplay prevented:", err));
+      setIsPaused(false);
     } else {
       v.pause();
     }
@@ -69,6 +72,18 @@ export default function HomePage({ navigate }: HomePageProps) {
     if (!v) return;
     v.muted = !v.muted;
     setIsMuted(v.muted);
+  };
+
+  const togglePlayPause = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      v.play().catch((err) => console.warn("Play prevented:", err));
+      setIsPaused(false);
+    } else {
+      v.pause();
+      setIsPaused(true);
+    }
   };
 
   const stats = statItems(site.stats);
@@ -232,6 +247,25 @@ export default function HomePage({ navigate }: HomePageProps) {
               playsInline
               preload="metadata"
             />
+
+            {/* Invisible play/pause toggle button covering entire video */}
+            <button
+              onClick={togglePlayPause}
+              className="absolute inset-0 z-[5] cursor-pointer bg-transparent"
+              aria-label={isPaused ? "Play showreel" : "Pause showreel"}
+              title={isPaused ? "Play" : "Pause"}
+            />
+
+            {/* Paused indicator — only visible when paused */}
+            {isPaused && (
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[6]">
+                <div className="w-16 h-16 rounded-full bg-black/60 border border-white/30 flex items-center justify-center backdrop-blur-sm">
+                  <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+            )}
             
             {/* Visual gradient overlays to match site aesthetic */}
             <div className="absolute inset-0 bg-gradient-to-br from-amber-950/20 via-transparent to-zinc-950/40 pointer-events-none" />
@@ -264,8 +298,10 @@ export default function HomePage({ navigate }: HomePageProps) {
 
             {/* Bottom Left Status Badge */}
             <div className="absolute bottom-5 left-6 flex items-center gap-2 pointer-events-none">
-              <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-              <span className="text-amber-400/60 text-[10px] tracking-wider uppercase">Auto-playing</span>
+              <div className={`w-1.5 h-1.5 rounded-full ${isPaused ? "bg-gray-500" : "bg-amber-400 animate-pulse"}`} />
+              <span className={`${isPaused ? "text-gray-500" : "text-amber-400/60"} text-[10px] tracking-wider uppercase`}>
+                {isPaused ? "Paused" : "Auto-playing"}
+              </span>
             </div>
           </div>
         </div>

@@ -22,6 +22,7 @@ export interface SiteContent {
   stats: SiteStats;
   workTagline: string;
   heroTagline: string;
+  logo: string;
   social: SocialLinks;
   contact: ContactInfo;
 }
