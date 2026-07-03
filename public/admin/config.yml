@@ -1,0 +1,94 @@
+# ─────────────────────────────────────────────────────────────
+# Decap CMS configuration
+# Docs: https://decapcms.org/docs/configuration-options/
+# ─────────────────────────────────────────────────────────────
+#
+# Edit the two values marked "CHANGE" below, then set up authentication.
+# See the "Editing content (CMS)" section of the README for full steps.
+
+backend:
+  name: github
+  repo: your-username/your-repo            # CHANGE: owner/repo of THIS site
+  branch: main
+  # GitHub requires an OAuth gateway (GitHub Pages has no auth server).
+  # Deploy the free proxy https://github.com/sterlingwes/decap-proxy on
+  # Cloudflare Workers, then put its URL here:
+  base_url: https://your-decap-proxy.example.workers.dev   # CHANGE
+  # auth_endpoint defaults to "auth" — matches the proxy above.
+
+# ── Local editing ───────────────────────────────────────────
+# To edit locally, uncomment the line below and run `npx decap-server`,
+# then open http://localhost:5173/admin/ (during `npm run dev`).
+# local_backend: true
+
+# ── Media (for any future image uploads) ────────────────────
+media_folder: "public/images"
+public_folder: "/images"
+
+# ── Optional draft/review workflow ──────────────────────────
+# publish_mode: editorial_workflow
+
+collections:
+  # ─────────────────── Work Videos ───────────────────────
+  - name: "work"
+    label: "Work Videos"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - file: "src/content/projects.json"
+        name: "projects"
+        label: "Work Videos List"
+        fields:
+          - label: "Videos"
+            label_singular: "Video"
+            name: "projects"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.category}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Category", name: "category", widget: "string", hint: "e.g. Science & Technology" }
+              - { label: "Style", name: "style", widget: "string", hint: "e.g. Commentary, Documentary, Gameplay — also becomes a filter chip" }
+              - { label: "Duration", name: "duration", widget: "string", hint: "e.g. 12:34" }
+              - { label: "Views", name: "views", widget: "string", hint: "e.g. 18.2K" }
+              - { label: "Year", name: "year", widget: "string", hint: "e.g. 2025" }
+              - { label: "Thumbnail color", name: "color", widget: "string", hint: "Hex color for the card gradient, e.g. #1a1206" }
+              - { label: "Video URL", name: "videoUrl", widget: "string", required: false, hint: "Link to the video (YouTube etc.). Leave blank for a non-clickable card." }
+
+  # ─────────────────── Site Settings ─────────────────────
+  - name: "settings"
+    label: "Site Settings"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - file: "src/content/site.json"
+        name: "site"
+        label: "Site Content"
+        fields:
+          - label: "Stats"
+            name: "stats"
+            widget: "object"
+            summary: "{{fields.videos}} videos · {{fields.views}} views · {{fields.likes}} likes"
+            hint: "Shown on the Home and About pages. The first two also drive the Work page stat line."
+            fields:
+              - { label: "Videos", name: "videos", widget: "string", hint: "e.g. 7" }
+              - { label: "Views", name: "views", widget: "string", hint: "e.g. 52.77K" }
+              - { label: "Likes", name: "likes", widget: "string", hint: "e.g. 1.2K" }
+          - { label: "Work page tagline", name: "workTagline", widget: "string", hint: "Ends the Work page line: «N videos · N views · <this>», e.g. Always giving 100%" }
+          - { label: "Hero tagline", name: "heroTagline", widget: "string", hint: "Shown under the name on the home page hero" }
+          - label: "Social links"
+            name: "social"
+            widget: "object"
+            summary: "YouTube · Instagram · X"
+            fields:
+              - { label: "YouTube", name: "youtube", widget: "string" }
+              - { label: "Instagram", name: "instagram", widget: "string" }
+              - { label: "X (Twitter)", name: "x", widget: "string" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            summary: "{{fields.email}}"
+            fields:
+              - { label: "Contact email", name: "email", widget: "string", hint: "Where EmailJS delivers messages / mailto fallback" }
+              - { label: "Available for new projects", name: "availability", widget: "boolean" }

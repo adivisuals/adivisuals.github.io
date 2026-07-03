@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+/* ───────────────────────── Base ───────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #000;
+  color: #f5f0e8;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(251, 191, 36, 0.25);
+  color: #fff;
+}
+
+/* ───────────────────── Keyframes ──────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ─────────────────── Entrance animations ──────────────── */
+.animate-fade-in-up {
+  animation: fadeInUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1.1s ease both;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+.delay-200 {
+  animation-delay: 0.2s;
+}
+.delay-300 {
+  animation-delay: 0.3s;
+}
+.delay-400 {
+  animation-delay: 0.4s;
+}
+.delay-700 {
+  animation-delay: 0.7s;
+}
+
+/* ──────────────────── Custom durations ────────────────── */
+/* Tailwind v4 default scale omits these values */
+.duration-400 {
+  transition-duration: 400ms;
+}
+.duration-800 {
+  transition-duration: 800ms;
+}
+
+/* ──────────────────── Marquee strip ───────────────────── */
+.marquee-inner {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 32s linear infinite;
+  will-change: transform;
+}
+
+/* ──────────────────── Hover effects ───────────────────── */
+.hover-lift {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-lift:hover {
+  transform: translateY(-6px);
+}
+
+.amber-glow {
+  transition: box-shadow 0.5s ease, border-color 0.5s ease;
+}
+.amber-glow:hover {
+  box-shadow: 0 10px 50px -12px rgba(251, 191, 36, 0.35);
+}
+
+/* ──────────────────── Nav underline ───────────────────── */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 1px;
+  width: 0;
+  background: #fbbf24;
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ──────────────────── Scrollbar hide ──────────────────── */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ──────────────────── Global film grain ───────────────── */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 160px 160px;
+}
+
+/* ──────────────────── Reduced motion ──────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-fade-in,
+  .marquee-inner {
+    animation: none !important;
+  }
+  .hover-lift:hover {
+    transform: none;
+  }
+}
