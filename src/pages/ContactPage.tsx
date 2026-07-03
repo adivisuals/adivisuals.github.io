@@ -266,12 +266,6 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  {!isEmailjsConfigured && (
-                    <div className="border border-amber-400/20 bg-amber-400/[0.04] px-4 py-3 text-amber-300/80 text-[11px] tracking-wide">
-                      Email delivery isn't configured yet — submitting will open your email app instead. Set up EmailJS to send directly from the site.
-                    </div>
-                  )}
-
                   <div className="grid grid-cols-2 gap-4">
                     {[
                       { name: "firstName", label: "First Name", placeholder: "John" },
