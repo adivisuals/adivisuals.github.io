@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Aditya Vishwakarma — Video Editor Portfolio
 
 A cinematic, single-page React portfolio (Vite + Tailwind v4) with:
@@ -157,3 +158,6 @@ src/utils/               email (EmailJS wrapper), sanitize, cn
 src/assets/hero-bg.jpg   inlined into the build as base64
 .github/workflows/       GitHub Pages deploy
 ```
+=======
+# adivisuals.github.io
+>>>>>>> 678c715fc4f61e312ff6c341289425a069d6a063
