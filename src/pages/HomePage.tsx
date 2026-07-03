@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import type { Page } from "@/App";
 import { site } from "@/data/content";
 import { useInView } from "@/hooks/useInView";
@@ -46,6 +47,21 @@ export default function HomePage({ navigate }: HomePageProps) {
   const categoriesSection = useInView<HTMLDivElement>();
   const skillsSection = useInView<HTMLDivElement>();
   const ctaSection = useInView<HTMLDivElement>();
+  
+  // Showreel specific inView hook (0.3 threshold to trigger when 30% visible)
+  const showreelSection = useInView<HTMLDivElement>(0.3);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    
+    if (showreelSection.inView) {
+      v.play().catch((err) => console.warn("Autoplay prevented:", err));
+    } else {
+      v.pause();
+    }
+  }, [showreelSection.inView]);
 
   const stats = statItems(site.stats);
 
@@ -170,7 +186,7 @@ export default function HomePage({ navigate }: HomePageProps) {
       </section>
 
       {/* ─── Showreel ─── */}
-      <section className="py-24 bg-zinc-950 relative overflow-hidden">
+      <section className="py-24 bg-zinc-950 relative overflow-hidden" ref={showreelSection.ref}>
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -197,40 +213,46 @@ export default function HomePage({ navigate }: HomePageProps) {
             </h2>
           </div>
 
-          {/* Showreel links to the YouTube channel */}
-          <a
-            href={site.social.youtube}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative block w-full aspect-video bg-zinc-900 border border-white/8 group cursor-pointer overflow-hidden hover-lift amber-glow transition-all duration-500"
-            aria-label="Watch showreel on YouTube"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-amber-950/20 via-transparent to-zinc-950/40" />
+          {/* Local Video Showreel */}
+          <div className="relative block w-full aspect-video bg-zinc-900 border border-white/8 group overflow-hidden hover-lift amber-glow transition-all duration-500">
+            <video
+              ref={videoRef}
+              src="/videos/Showreel.mp4"
+              className="absolute inset-0 w-full h-full object-cover"
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            />
+            
+            {/* Visual gradient overlays to match site aesthetic */}
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-950/20 via-transparent to-zinc-950/40 pointer-events-none" />
             <div
-              className="absolute inset-0 opacity-5"
+              className="absolute inset-0 opacity-5 pointer-events-none"
               style={{
                 backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)",
                 backgroundSize: "40px 40px",
               }}
             />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative">
-                <div className="absolute inset-0 rounded-full bg-amber-400/10 scale-150 group-hover:scale-[2] transition-transform duration-700 blur-xl" />
-                <div className="relative w-20 h-20 rounded-full border border-white/30 flex items-center justify-center group-hover:border-amber-400/60 group-hover:scale-110 transition-all duration-400 backdrop-blur-sm bg-white/5">
-                  <svg className="w-6 h-6 text-white/70 group-hover:text-amber-400 transition-colors duration-300 ml-1" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-              </div>
+
+            {/* Disabled Mute Button Option */}
+            <button
+              disabled
+              className="absolute bottom-5 right-5 flex items-center gap-2 px-3 py-1.5 bg-black/70 border border-white/10 text-gray-500 cursor-not-allowed backdrop-blur-sm"
+              title="Audio is disabled"
+            >
+              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
+              </svg>
+              <span className="text-[10px] tracking-widest uppercase">Muted</span>
+            </button>
+
+            {/* Bottom Left Status Badge */}
+            <div className="absolute bottom-5 left-6 flex items-center gap-2 pointer-events-none">
+              <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <span className="text-amber-400/60 text-[10px] tracking-wider uppercase">Auto-playing</span>
             </div>
-            <div className="absolute bottom-5 left-6 right-6 flex items-center justify-between">
-              <span className="text-gray-600 text-xs tracking-widest uppercase">2025 Showreel</span>
-              <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                <span className="text-amber-400/60 text-[10px] tracking-wider uppercase">Preview</span>
-              </div>
-            </div>
-          </a>
+          </div>
         </div>
       </section>
 

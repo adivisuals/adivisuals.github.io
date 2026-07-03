@@ -1,64 +1,95 @@
 {
   "projects": [
     {
-      "title": "Tech Review Breakdown",
+      "title": "Watch this before you buy PS5❗️",
+      "duration": "0:33",
+      "views": "27.22K",
+      "likes": "759",
+      "year": "2025",
+      "videoUrl": "https://www.youtube.com/watch?v=-u-OjSSMjHA",
+      "thumbnail": "/images/thumb-ps5.jpg",
+      "color": "#1a1206",
+      "description": "",
       "category": "Science & Technology",
-      "style": "Commentary",
-      "duration": "12:34",
-      "views": "18.2K",
-      "year": "2024",
-      "color": "#1a1206",
-      "videoUrl": ""
+      "style": "Commentary"
     },
     {
-      "title": "Market Insights Weekly",
-      "category": "Business & Finance",
-      "style": "Educational",
-      "duration": "08:15",
-      "views": "11.4K",
-      "year": "2024",
-      "color": "#0d1306",
-      "videoUrl": ""
-    },
-    {
-      "title": "Gaming Highlights Reel",
-      "category": "Gaming",
-      "style": "Gameplay",
-      "duration": "06:50",
-      "views": "9.8K",
+      "title": "Samsung TriFold Discontinued 🤔",
+      "duration": "0:45",
+      "views": "14.66K",
+      "likes": "248",
       "year": "2025",
-      "color": "#0d0d1a",
-      "videoUrl": ""
+      "videoUrl": "",
+      "thumbnail": "/images/thumb-trifold.jpg",
+      "color": "#0a0f1a",
+      "description": "Another video for a tech channel",
+      "category": "Science & Technology",
+      "style": "Documentary"
     },
     {
-      "title": "Street Stories Doc",
-      "category": "Documentary",
-      "style": "Documentary",
-      "duration": "22:10",
-      "views": "7.2K",
+      "title": "iPhone vs iPhone",
+      "duration": "0:50",
+      "views": "10.5K",
+      "likes": "181",
       "year": "2025",
-      "color": "#1a0d0d",
-      "videoUrl": ""
+      "videoUrl": "",
+      "thumbnail": "/images/thumb-iphone.jpg",
+      "color": "#1a0a0a",
+      "description": "A video for a Tech Channel",
+      "category": "Science & Technology",
+      "style": "Commentary"
     },
     {
-      "title": "Economy Explained",
-      "category": "Economy",
-      "style": "Faceless",
-      "duration": "14:05",
-      "views": "4.3K",
+      "title": "Luke Belmar",
+      "duration": "1:20",
+      "views": "331",
+      "likes": "3",
       "year": "2025",
-      "color": "#0d1a16",
-      "videoUrl": ""
-    },
-    {
-      "title": "Creator Vlog Series",
+      "videoUrl": "",
+      "thumbnail": "/images/thumb-luke.jpg",
+      "color": "#0a1a0f",
+      "description": "Just a Personal Project",
       "category": "People & Blogs",
-      "style": "Talking Head",
-      "duration": "09:30",
-      "views": "1.87K",
-      "year": "2025",
-      "color": "#1a1206",
-      "videoUrl": ""
+      "style": "Commentary"
+    },
+    {
+      "title": "Want this type of Edits?",
+      "duration": "0:30",
+      "views": "39",
+      "likes": "2",
+      "year": "2024",
+      "videoUrl": "",
+      "thumbnail": "/images/thumb-edit.jpg",
+      "color": "#1a1a0a",
+      "description": "My first sample when I first started editing professionally. This was a year ago, so my editing skills have far improved since then",
+      "category": "Entertainment",
+      "style": "Editing"
+    },
+    {
+      "title": "Sample Video.mp4 one",
+      "duration": "0:40",
+      "views": "17",
+      "likes": "1",
+      "year": "2024",
+      "videoUrl": "",
+      "thumbnail": "/images/thumb-sports.jpg",
+      "color": "#0a1a1a",
+      "description": "A sample for a sports channel",
+      "category": "Sports",
+      "style": "Highlight"
+    },
+    {
+      "title": "Sample Video for a Finance Channel",
+      "duration": "1:00",
+      "views": "12",
+      "likes": "1",
+      "year": "2024",
+      "videoUrl": "",
+      "thumbnail": "/images/thumb-finance.jpg",
+      "color": "#0a0a1a",
+      "description": "Another sample for a finance creator this one is the showreel",
+      "category": "Business & Finance",
+      "style": "Showreel"
     }
   ]
 }

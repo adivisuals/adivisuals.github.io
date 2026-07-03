@@ -32,10 +32,11 @@ export interface Project {
   style: string;
   duration: string;
   views: string;
+  likes: string;
   year: string;
-  /** Hex color used for the thumbnail gradient, e.g. #1a1206 */
+  thumbnail?: string;
   color: string;
-  /** Optional link to the actual video (YouTube, etc.). Empty = no link. */
+  description?: string;
   videoUrl?: string;
 }
 
@@ -43,13 +44,7 @@ interface ProjectsFile {
   projects: Project[];
 }
 
-/**
- * Single source of truth for editable site content.
- * These JSON files are managed through the Decap CMS admin panel (/admin)
- * and are bundled into the app at build time.
- */
 export const site: SiteContent = siteData as SiteContent;
 export const projects: Project[] = (projectsData as ProjectsFile).projects;
 
-/** Work-page stat line, e.g. "7 videos · 52.77K views · Always giving 100%" */
-export const workStatLine = `${site.stats.videos} videos · ${site.stats.views} views · ${site.workTagline}`;
+export const workStatLine = `${site.stats.videos} videos · ${site.stats.views} views · ${site.stats.likes} likes · ${site.workTagline}`;

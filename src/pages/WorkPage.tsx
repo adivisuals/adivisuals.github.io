@@ -12,8 +12,6 @@ export default function WorkPage({ navigate }: WorkPageProps) {
   const gridSection = useInView<HTMLDivElement>();
   const [activeFilter, setActiveFilter] = useState("All");
 
-  // Filters are derived from the actual project data, so new styles added
-  // in the CMS automatically appear as filter chips.
   const filters = useMemo(
     () => ["All", ...Array.from(new Set(projects.map((p) => p.style).filter(Boolean)))],
     []
@@ -97,12 +95,21 @@ export default function WorkPage({ navigate }: WorkPageProps) {
               const cardInner = (
                 <>
                   {/* Thumbnail */}
-                  <div
-                    className="aspect-video relative overflow-hidden"
-                    style={{ background: `linear-gradient(135deg, ${project.color} 0%, #0a0a0a 100%)` }}
-                  >
+                  <div className="aspect-video relative overflow-hidden bg-zinc-900">
+                    {project.thumbnail ? (
+                      <img
+                        src={project.thumbnail}
+                        alt={project.title}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div
+                        className="absolute inset-0"
+                        style={{ background: `linear-gradient(135deg, ${project.color} 0%, #0a0a0a 100%)` }}
+                      />
+                    )}
                     <div
-                      className="absolute inset-0 opacity-10"
+                      className="absolute inset-0 opacity-10 pointer-events-none"
                       style={{
                         backgroundImage:
                           "linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)",
@@ -138,10 +145,10 @@ export default function WorkPage({ navigate }: WorkPageProps) {
                           <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                           <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                         </svg>
-                        {project.views}
+                        {project.views} views · {project.likes} Likes
                       </span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 mb-3">
                       <span className="text-[10px] tracking-widest uppercase text-gray-600 border border-white/8 px-2 py-0.5">
                         {project.category}
                       </span>
@@ -149,6 +156,9 @@ export default function WorkPage({ navigate }: WorkPageProps) {
                         {project.style}
                       </span>
                     </div>
+                    {project.description && (
+                      <p className="text-gray-500 text-xs leading-relaxed mt-2">{project.description}</p>
+                    )}
                   </div>
                 </>
               );
