@@ -13,7 +13,7 @@ backend:
   # GitHub requires an OAuth gateway (GitHub Pages has no auth server).
   # Deploy the free proxy https://github.com/sterlingwes/decap-proxy on
   # Cloudflare Workers, then put its URL here:
-  base_url: https://adivisuals-cms.workers.dev   # CHANGE
+  base_url: https://decap-proxy.adivisuals-cms.workers.dev   # CHANGE
   # auth_endpoint defaults to "auth" — matches the proxy above.
 
 # ── Local editing ───────────────────────────────────────────
