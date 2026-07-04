@@ -94,6 +94,7 @@ body {
 /* ──────────────────── Hover effects ───────────────────── */
 .hover-lift {
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 .hover-lift:hover {
   transform: translateY(-6px);
@@ -157,3 +158,9 @@ body {
     transform: none;
   }
 }
+
+/* ──────────────────── Lenis smooth scroll ─────────────── */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }

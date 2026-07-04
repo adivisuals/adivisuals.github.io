@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { startSmoothScroll, scrollToTop } from "@/lib/smoothScroll";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HomePage from "@/pages/HomePage";
@@ -35,6 +36,10 @@ export default function App() {
 
   useSEO(seoData[currentPage].title, seoData[currentPage].desc);
 
+  useEffect(() => {
+    return startSmoothScroll();
+  }, []);
+
   const navigate = (page: Page) => {
     if (page === currentPage) return;
     setIsTransitioning(true);
@@ -42,12 +47,12 @@ export default function App() {
       setDisplayPage(page);
       setCurrentPage(page);
       setIsTransitioning(false);
-      window.scrollTo({ top: 0, behavior: "auto" });
+      scrollToTop(true);
     }, 280);
   };
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "auto" });
+    scrollToTop(true);
   }, []);
 
   const renderPage = () => {
