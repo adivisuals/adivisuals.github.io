@@ -10,10 +10,12 @@ export function startSmoothScroll(): () => void {
   }
 
   const lenis = new Lenis({
-    lerp: 0.1, // lower = smoother/slower glide · higher = snappier
+    // Duration-based easing gives that long, premium "glide" effect
+    duration: 1.4, 
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
     wheelMultiplier: 1,
     touchMultiplier: 1.5,
-    smoothWheel: true,
     prevent: (node) => {
       const el = node as HTMLElement;
       if (!el || el === document.body) return false;
