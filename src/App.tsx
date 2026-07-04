@@ -1,6 +1,4 @@
-import { useState, useEffect, useRef } from "react";
-import Lenis from "lenis";
-import "lenis/dist/lenis.css";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HomePage from "@/pages/HomePage";
@@ -34,59 +32,8 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>("home");
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [displayPage, setDisplayPage] = useState<Page>("home");
-  const lenisRef = useRef<Lenis | null>(null);
 
   useSEO(seoData[currentPage].title, seoData[currentPage].desc);
-
-  // ── Premium smooth scroll (Lenis) ──
-  // Inertia-based easing makes each wheel/touch input glide instead of jumping,
-  // so a user can't blow through the whole page in one swipe — momentum naturally
-  // tames aggressive scrolling. Respects prefers-reduced-motion.
-  useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) return;
-
-    const lenis = new Lenis({
-      lerp: 0.085, // lower = more glide / premium inertia
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.4,
-      gestureOrientation: "vertical",
-      prevent: (node) => {
-        // Don't hijack scroll inside natively-scrollable containers
-        const el = node as HTMLElement;
-        if (!el || el === document.body) return false;
-        const style = window.getComputedStyle(el);
-        const overflowY = style.overflowY;
-        const isScrollable = (overflowY === "auto" || overflowY === "scroll") && el.scrollHeight > el.clientHeight;
-        return isScrollable;
-      },
-    });
-    lenisRef.current = lenis;
-
-    let rafId: number;
-    const raf = (time: number) => {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    };
-    rafId = requestAnimationFrame(raf);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
-      lenisRef.current = null;
-    };
-  }, []);
-
-  const scrollToTop = () => {
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo({ top: 0, behavior: "auto" });
-    }
-  };
 
   const navigate = (page: Page) => {
     if (page === currentPage) return;
@@ -95,12 +42,12 @@ export default function App() {
       setDisplayPage(page);
       setCurrentPage(page);
       setIsTransitioning(false);
-      scrollToTop();
+      window.scrollTo({ top: 0, behavior: "auto" });
     }, 280);
   };
 
   useEffect(() => {
-    scrollToTop();
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, []);
 
   const renderPage = () => {
